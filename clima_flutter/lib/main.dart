@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.LOGIN.path,
       getPages: AppPages.routes,
       initialBinding: BindingsBuilder(() {
-        Get.put<AuthController>(AuthController());
+        Get.put<AuthController>(AuthController(), permanent: true);
       }),
 
       // Para que funcione el scroll con el mouse (drag)
@@ -53,8 +53,7 @@ class MyApp extends StatelessWidget {
 
       theme: Themes.LIGHT.data,
       darkTheme: Themes.DARK.data,
-      themeMode: ThemeMode.light,
-      //themeMode: ThemeMode.system,
+      themeMode: ThemeMode.system,
 
       translations: MyLocalizations(),
       locale: Get.deviceLocale,

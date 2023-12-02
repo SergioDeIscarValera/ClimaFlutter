@@ -4,6 +4,12 @@ import 'package:ClimaFlutter/content/clima/models/notification_template.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+Future<void> handleBackgroundMessage(RemoteMessage message) async {
+  log("Título: ${message.notification?.title}");
+  log("Cuerpo: ${message.notification?.body}");
+  log("Data: ${message.data}");
+}
+
 class NotificationsFirebase {
   static final NotificationsFirebase _singleton =
       NotificationsFirebase._internal();
@@ -29,8 +35,7 @@ class NotificationsFirebase {
     log("token: $token");
     if (token == null) return;
     var docRef = await _getRefAndSnapshotToken(email: email);
-    if (docRef.value == null) return;
-    if (docRef.value!.exists) {
+    if (docRef.value != null && docRef.value!.exists) {
       await docRef.key.update({
         "token": token,
       });
@@ -49,16 +54,10 @@ class NotificationsFirebase {
     return MapEntry(docRef, snapshot.exists ? snapshot : null);
   }
 
-  Future<void> handleBackgroundMessage(RemoteMessage message) async {
-    log("Handling a background message: ${message.messageId}");
-  }
-
-  Future initLocalNotifications() async {}
-
-  Future<void> initNotifications({
+  void initNotifications({
     required String? email,
   }) async {
-    saveToken(email: email);
+    await saveToken(email: email);
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
   }
 

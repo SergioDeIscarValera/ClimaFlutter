@@ -28,10 +28,7 @@ class AuthController extends GetxController {
 
   @override
   void onReady() {
-    //ever(_firebaseUser, handleAuthChanged,condition: (_) => _firebaseUser.value != null);
-    //ever(_firebaseUser, handleAuthChanged);
-    //ever(_firebaseUser, handleAuthChanged, condition: (User? previous, User? current) => previous != current);
-    //firebaseUser.listen(handleAuthChanged);
+    ever(_firebaseUser, handleAuthChanged);
     _firebaseUser.bindStream(user);
     super.onReady();
   }
@@ -47,7 +44,7 @@ class AuthController extends GetxController {
       Get.offAllNamed(Routes.HOME.path);
       // Si es movil
       if (GetPlatform.isMobile) {
-        await NotificationsFirebase().initNotifications(
+        NotificationsFirebase().initNotifications(
           email: newUser.email,
         );
       }
@@ -62,8 +59,6 @@ class AuthController extends GetxController {
           email: emailController.value.text,
           password: passwordController.value.text);
       MySnackBar.snackSuccess("login_success".tr);
-      // REVISAR
-      handleAuthChanged(firebaseUser);
     } on AuthErrors catch (e) {
       MySnackBar.snackError(e.message);
     } catch (e) {
@@ -85,8 +80,6 @@ class AuthController extends GetxController {
               password: passwordController.value.text);
       onSuccess();
       MySnackBar.snackSuccess("register_success".tr);
-      // REVISAR
-      handleAuthChanged(firebaseUser);
     } on AuthErrors catch (e) {
       MySnackBar.snackError(e.message);
     } catch (e) {
@@ -98,8 +91,6 @@ class AuthController extends GetxController {
     try {
       firebaseUser = await AuthFirebaseRepository().loginWithGoogle();
       MySnackBar.snackSuccess("login_google_success");
-      // REVISAR
-      handleAuthChanged(firebaseUser);
     } on AuthErrors catch (e) {
       MySnackBar.snackError(e.message);
     } catch (e) {
@@ -109,9 +100,7 @@ class AuthController extends GetxController {
 
   void signOut() async {
     await _auth.signOut();
-    // REVISAR
     firebaseUser = null;
-    handleAuthChanged(firebaseUser);
   }
 
   void passwordReset() async {
