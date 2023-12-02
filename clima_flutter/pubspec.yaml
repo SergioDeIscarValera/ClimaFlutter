@@ -1,0 +1,38 @@
+name: ClimaFlutter
+description: Aplicación web/android realizada en flutter consumiendo la api AEMET OpenData y como base de datos Firebase.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  provider: ^6.0.0
+  get: ^4.6.6
+  http: ^1.1.0
+  fl_chart: ^0.64.0
+  firebase_core: ^2.22.0
+  firebase_auth: ^4.14.0
+  google_sign_in: ^6.1.6
+  intl: ^0.18.1
+  collection: ^1.17.2
+  cloud_firestore: ^4.13.2
+  firebase_messaging: ^14.7.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/assets/
+    - lib/assets/weathers/
