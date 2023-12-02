@@ -18,14 +18,14 @@ Y puedes configurar notificaciones para que te avise cuando se produzca un cambi
 
 ### Tablet
 
-![Home Tablet](./assets/home-tablet.PNG)
+<img src="./assets/home-tablet.PNG" alt="Home Mobile" width="500" height="380" />
 
 ### Mobile
 
 <table>
     <tr>
-        <td><img src="./assets/home-mobile.PNG" alt="Home Mobile" width="150" height="300" /></td>
-        <td><img src="./assets/municipios.PNG" alt="Notificaciones Mobile" width="150" height="300" /></td>
+        <td><img src="./assets/home-mobile.png" alt="Home Mobile" width="150" height="300" /></td>
+        <td><img src="./assets/municipios.png" alt="Notificaciones Mobile" width="150" height="300" /></td>
     </tr>
 </table>
 
